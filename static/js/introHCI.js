@@ -11,8 +11,26 @@ $(document).ready(function() {
 function initializePage() {
 	$("#testjs").click(function(e) {
 		$('.jumbotron h1').text("Javascript is connected");
+		$("#testjs").text("Please wait while we find you...");
+		//$("jumbotron p").toggleClass("active");
+		$(".jumbotron p").toggleClass("active");
+
 	});
+	$("a.thumbnail").click(projectClick);
 
 	// Add any additional listeners here
 	// example: $("#div-id").click(functionToCall);
+}
+
+// projectClick function that will be used to help replace rather than append
+function projectClick(e) {
+	e.preventDefault();
+	var containingProject = $(this).closest(".project");
+    var description = $(containingProject).find(".project-description");
+    if (description.length == 0) {
+       $(containingProject).append("<div class='project-description'><p>Description of the project.</p></div>");
+    } else {
+       //description.html("<p>Stop clicking on me! You just did it at " + (new Date()) + "</p>");
+        $(description).toggle();
+    }
 }
